@@ -1,0 +1,67 @@
+.page {
+  direction: rtl;
+  min-height: 100vh;
+  padding: 145px 7% 80px;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(129, 166, 198, 0.14), transparent 30%),
+    linear-gradient(180deg, #f3f8fb 0%, #fbfdfe 55%, #eef5f8 100%);
+  color: #071a3d;
+}
+
+.page h1 {
+  margin-bottom: 16px;
+  color: #06162e;
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -1.2px;
+  font-weight: 950;
+}
+
+.page p {
+  max-width: 760px;
+  color: #52687a;
+  font-size: 18px;
+  line-height: 1.9;
+  font-weight: 700;
+}
+
+.page-card {
+  margin-top: 34px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #cfe0e8;
+  border-radius: 34px;
+  padding: 36px;
+  box-shadow: 0 28px 75px rgba(7, 26, 61, 0.08);
+}
+
+.page-btn {
+  margin-top: 26px;
+  border: none;
+  border-radius: 999px;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #06162e, #0b2a55);
+  color: #eaf6ff;
+  font-weight: 950;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.28s ease;
+}
+
+.page-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 48px rgba(7, 26, 61, 0.22);
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 115px 18px 55px;
+  }
+
+  .page-card {
+    padding: 26px 22px;
+    border-radius: 28px;
+  }
+}
