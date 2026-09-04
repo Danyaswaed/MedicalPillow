@@ -16,10 +16,9 @@ import {
 import pillow1 from "../../assets/images/pillow1.png";
 import pillow2 from "../../assets/images/pillow2.png";
 import pillow3 from "../../assets/images/pillow3.png";
-import pillow4 from "../../assets/images/pillow2.png";
 
 function Product() {
-  const images = [pillow1, pillow2, pillow3, pillow4];
+  const images = [pillow1, pillow2, pillow3];
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
@@ -27,46 +26,105 @@ function Product() {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     api
       .get("/products")
       .then((res) => {
-        setProduct(res.data[0]);
+        if (res.data && res.data.length > 0) {
+          setProduct(res.data[0]);
+        } else {
+          setError("המוצר אינו זמין כרגע");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.error("שגיאה בטעינת המוצר:", err);
+        setError("אירעה שגיאה בטעינת המוצר");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
-  if (!product) {
-    return <div className="product-page">טוען מוצר...</div>;
+  const handleAddToCart = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("יש להתחבר כדי להוסיף מוצר לסל");
+      navigate("/login");
+      return;
+    }
+
+    if (!product || Number(product.stock) <= 0) {
+      alert("המוצר אינו זמין במלאי");
+      return;
+    }
+
+    addToCart(product, quantity);
+    navigate("/cart");
+  };
+
+  const increaseQuantity = () => {
+    const availableStock = Number(product?.stock || 0);
+
+    if (quantity < availableStock) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const decreaseQuantity = () => {
+    setQuantity(Math.max(1, quantity - 1));
+  };
+
+  if (loading) {
+    return (
+      <main className="product-page">
+        <div className="product-message">טוען את פרטי המוצר...</div>
+      </main>
+    );
   }
+
+  if (error || !product) {
+    return (
+      <main className="product-page">
+        <div className="product-message product-error">
+          {error || "המוצר אינו זמין כרגע"}
+        </div>
+      </main>
+    );
+  }
+
+  const isInStock = Number(product.stock) > 0;
 
   return (
     <main className="product-page">
       <section className="product-layout">
         <div className="product-gallery-card">
           <div className="main-image">
-            <div className="product-bg"></div>
-            <img src={selectedImage} alt="כרית Cervio" />
+            <div className="product-bg" />
+
+            <img src={selectedImage} alt={`כרית ${product.name}`} />
           </div>
 
           <div className="gallery">
             {images.map((image, index) => (
               <button
                 key={index}
+                type="button"
                 className={selectedImage === image ? "thumb active" : "thumb"}
                 onClick={() => setSelectedImage(image)}
+                aria-label={`הצגת תמונת מוצר מספר ${index + 1}`}
               >
-                <img src={image} alt={`תמונה ${index + 1}`} />
+                <img src={image} alt={`תמונת מוצר מספר ${index + 1}`} />
               </button>
             ))}
           </div>
         </div>
 
         <div className="product-info">
-          <span className="product-tag">כרית רפואית ארגונומית</span>
+          <span className="product-tag">כרית ארגונומית איכותית</span>
 
           <h1>{product.name}</h1>
 
@@ -76,56 +134,73 @@ function Product() {
             <FaStar />
             <FaStar />
             <FaStar />
-            <span>4.9 | 186 ביקורות</span>
+
+            <span>4.9 מתוך 5 | 186 ביקורות</span>
           </div>
 
           <p>{product.description}</p>
 
           <div className="price-row">
-            <div className="price">₪{product.price}</div>
-            <span className="stock">במלאי</span>
-          </div>
-
-          <div className="quantity-row">
-            <span>כמות</span>
-
-            <div className="quantity-control">
-              <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>
-                <FaMinus />
-              </button>
-
-              <strong>{quantity}</strong>
-
-              <button onClick={() => setQuantity(quantity + 1)}>
-                <FaPlus />
-              </button>
+            <div className="price">
+              ₪{Number(product.price).toLocaleString("he-IL")}
             </div>
+
+            <span className={isInStock ? "stock" : "stock out-of-stock"}>
+              {isInStock ? "זמין במלאי" : "אזל מהמלאי"}
+            </span>
           </div>
+
+          {isInStock && (
+            <div className="quantity-row">
+              <span>בחירת כמות</span>
+
+              <div className="quantity-control">
+                <button
+                  type="button"
+                  onClick={decreaseQuantity}
+                  disabled={quantity <= 1}
+                  aria-label="הפחתת כמות"
+                >
+                  <FaMinus />
+                </button>
+
+                <strong>{quantity}</strong>
+
+                <button
+                  type="button"
+                  onClick={increaseQuantity}
+                  disabled={quantity >= Number(product.stock)}
+                  aria-label="הוספת כמות"
+                >
+                  <FaPlus />
+                </button>
+              </div>
+            </div>
+          )}
 
           <button
+            type="button"
             className="add-cart-btn"
-            onClick={() => {
-              addToCart(product, quantity);
-              navigate("/cart");
-            }}
+            onClick={handleAddToCart}
+            disabled={!isInStock}
           >
-            הוסף לסל
+            {isInStock ? "הוספה לסל הקניות" : "המוצר אזל מהמלאי"}
           </button>
 
           <div className="trust-grid">
             <div>
               <FaTruck />
-              <span>משלוח או איסוף עצמי</span>
+              <span>משלוח עד הבית או איסוף עצמי</span>
             </div>
 
             <div>
               <FaCreditCard />
-              <span>תשלום מאובטח</span>
+              <span>תשלום מאובטח ונוח</span>
             </div>
 
             <div>
               <FaShieldAlt />
-              <span>אחריות ושירות</span>
+              <span>מוצר איכותי</span>
             </div>
           </div>
         </div>
@@ -134,56 +209,65 @@ function Product() {
       <section className="product-details">
         <div className="tabs">
           <button
+            type="button"
             className={activeTab === "description" ? "tab active-tab" : "tab"}
             onClick={() => setActiveTab("description")}
           >
-            תיאור
+            תיאור המוצר
           </button>
 
           <button
+            type="button"
             className={activeTab === "specs" ? "tab active-tab" : "tab"}
             onClick={() => setActiveTab("specs")}
           >
-            מפרט
+            מפרט המוצר
           </button>
 
           <button
+            type="button"
             className={activeTab === "shipping" ? "tab active-tab" : "tab"}
             onClick={() => setActiveTab("shipping")}
           >
-            משלוחים
+            משלוחים ואיסוף
           </button>
         </div>
 
         <div className="tab-content">
           {activeTab === "description" && (
             <p>
-              Cervio נועדה להפחית עומסים באזור הצוואר והכתפיים באמצעות מבנה
-              ארגונומי שמסייע לשמור על תמיכה יציבה ונוחה לאורך כל הלילה.
+              כרית Cervica פותחה כדי לספק תמיכה נוחה ויציבה לאזור הצוואר
+              והכתפיים. המבנה הארגונומי שלה מסייע לשמור על תנוחת שינה נוחה לאורך
+              כל הלילה.
             </p>
           )}
 
           {activeTab === "specs" && (
             <ul>
               <li>
-                <FaCheckCircle /> חומר: Memory Foam איכותי
+                <FaCheckCircle />
+                <span>מתאימה לשינה על הגב ועל הצד</span>
+              </li>
+
+              <li>
+                <FaCheckCircle />
+                <span>כוללת כיסוי רך ונעים לשימוש יומיומי</span>
               </li>
               <li>
-                <FaCheckCircle /> מתאים לשינה על הגב ועל הצד
+                <FaCheckCircle />
+                <span> תומכת בכאבי גב עליון וצוואר</span>
               </li>
               <li>
-                <FaCheckCircle /> כיסוי נעים ונוח לשימוש יומיומי
-              </li>
-              <li>
-                <FaCheckCircle /> עיצוב תומך לצוואר ולכתפיים
+                <FaCheckCircle />
+                <span>עיצוב ארגונומי </span>
               </li>
             </ul>
           )}
 
           {activeTab === "shipping" && (
             <p>
-              ניתן לבחור איסוף עצמי או משלוח עד הבית. זמן אספקה משוער: 2-5 ימי
-              עסקים, בהתאם לאזור המשלוח.
+              ניתן לבחור בין משלוח עד הבית לבין איסוף עצמי. זמן האספקה המשוער
+              הוא בין 2 ל־5 ימי עסקים, בהתאם לאזור המשלוח.
             </p>
           )}
         </div>

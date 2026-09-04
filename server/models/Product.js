@@ -7,7 +7,22 @@ const getAll = (callback) => {
 const getById = (id, callback) => {
   db.query("SELECT * FROM products WHERE product_id = ?", [id], callback);
 };
+const getByIds = (ids, callback) => {
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return callback(null, []);
+  }
 
+  const placeholders = ids.map(() => "?").join(",");
+
+  const sql = `
+    SELECT product_id, name, price, stock
+    FROM products
+    WHERE product_id IN (${placeholders})
+      AND is_active = TRUE
+  `;
+
+  db.query(sql, ids, callback);
+};
 const create = (product, callback) => {
   const sql = `
     INSERT INTO products
@@ -66,6 +81,7 @@ const remove = (id, callback) => {
 module.exports = {
   getAll,
   getById,
+  getByIds,
   create,
   update,
   remove,

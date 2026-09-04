@@ -61,7 +61,7 @@ function Reviews() {
   return (
     <main className="reviews-page">
       <section className="reviews-hero">
-        <span>לקוחות Cervio</span>
+        <span>לקוחות Cervica</span>
         <h1>ביקורות וחוויות</h1>
         <p>כאן תוכלו לקרוא מה לקוחות חושבים על הכרית, ולשתף את החוויה שלכם.</p>
       </section>
@@ -71,7 +71,7 @@ function Reviews() {
           {reviews.length === 0 ? (
             <div className="empty-reviews">
               <h2>עדיין אין ביקורות</h2>
-              <p>היו הראשונים לכתוב ביקורת על Cervio.</p>
+              <p>היו הראשונים לכתוב ביקורת על Cervica.</p>
             </div>
           ) : (
             reviews.map((review) => (

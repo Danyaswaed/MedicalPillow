@@ -1,12 +1,10 @@
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { useCart } from "../../context/CartContext";
 
 function Navbar() {
-  const navigate = useNavigate();
-
-  const { cartItems } = useCart();
+  const { cartItems, clearCart } = useCart();
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -14,17 +12,19 @@ function Navbar() {
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const handleLogout = () => {
+    clearCart();
+
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("user");
 
-    navigate("/login");
+    window.location.href = "/login";
   };
 
   return (
     <header className="navbar">
       <Link to="/" className="logo">
-        <img src={logo} alt="Cervio Logo" className="logo-img" />
+        <img src={logo} alt="Cervica Logo" className="logo-img" />
       </Link>
 
       <nav className="nav-links">
@@ -35,14 +35,16 @@ function Navbar() {
         <Link to="/gallery">גלריה</Link>
         <Link to="/contact">צור קשר</Link>
 
-        {role === "admin" && <Link to="/admin">ניהול</Link>}
+        {token && role === "admin" && <Link to="/admin">ניהול</Link>}
       </nav>
 
       <div className="nav-actions">
-        <Link to="/cart" className="cart-btn">
-          🛒
-          {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-        </Link>
+        {token && (
+          <Link to="/cart" className="cart-btn">
+            🛒
+            {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+          </Link>
+        )}
 
         {!token ? (
           <Link to="/login" className="login-btn">

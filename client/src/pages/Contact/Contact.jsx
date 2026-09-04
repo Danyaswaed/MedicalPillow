@@ -42,18 +42,18 @@ function Contact() {
           <span>צור קשר</span>
           <h1>נשמח לעזור לכם</h1>
           <p>
-            יש לכם שאלה על כרית Cervio, משלוח או איסוף עצמי? השאירו פרטים ונחזור
-            אליכם בהקדם.
+            יש לכם שאלה על כרית Cervica, משלוח או איסוף עצמי? השאירו פרטים
+            ונחזור אליכם בהקדם.
           </p>
 
           <div className="contact-line">
             <FaPhone />
-            <strong>050-000-0000</strong>
+            <strong>052-241-8085</strong>
           </div>
 
           <div className="contact-line">
             <FaEnvelope />
-            <strong>info@cervio.co.il</strong>
+            <strong>Adnan3@bezeqin.net</strong>
           </div>
 
           <div className="contact-line">

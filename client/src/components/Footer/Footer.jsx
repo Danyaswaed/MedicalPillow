@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div>
-        <h2>Cervio</h2>
+        <h2>Cervica</h2>
         <p>כרית שינה ארגונומית לתמיכה בצוואר ולשינה טובה יותר.</p>
       </div>
 

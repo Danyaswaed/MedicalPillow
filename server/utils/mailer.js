@@ -10,19 +10,19 @@ const transporter = nodemailer.createTransport({
 
 const sendReply = async (to, subject, message) => {
   return transporter.sendMail({
-    from: `"Cervio Support" <${process.env.EMAIL_USER}>`,
+    from: `"Cervica Support" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     html: `
       <div style="font-family:Arial;padding:20px">
-        <h2>Cervio</h2>
+        <h2>Cervica</h2>
 
         <p>${message}</p>
 
         <hr>
 
         <small>
-          Thank you for contacting Cervio.
+          Thank you for contacting Cervica.
         </small>
       </div>
     `,

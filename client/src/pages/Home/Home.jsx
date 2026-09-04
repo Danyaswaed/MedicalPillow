@@ -1,7 +1,7 @@
 import "./Home.css";
 import { motion } from "framer-motion";
 import { FaShieldAlt, FaMoon, FaBed, FaUserMd, FaBone } from "react-icons/fa";
-import pillow from "../../assets/images/cervio-pillow.png";
+import pillow from "../../assets/images/Cervica-pillow.png";
 
 function Home() {
   return (
@@ -25,8 +25,8 @@ function Home() {
           <h2>התעוררו כל בוקר ללא כאבי צוואר</h2>
 
           <p>
-            Cervio פותחה במיוחד כדי להעניק תמיכה אופטימלית לצוואר, לשפר את איכות
-            השינה ולהפחית עומסים בזמן השינה.
+            Cervica פותחה במיוחד כדי להעניק תמיכה אופטימלית לצוואר, לשפר את
+            איכות השינה ולהפחית עומסים בזמן השינה.
           </p>
 
           <div className="hero-actions">
@@ -42,7 +42,7 @@ function Home() {
           transition={{ duration: 0.9 }}
         >
           <div className="blue-circle"></div>
-          <img src={pillow} alt="כרית Cervio" />
+          <img src={pillow} alt="כרית Cervica" />
 
           <div className="floating-card">
             <strong>תמיכה לצוואר</strong>
@@ -52,12 +52,12 @@ function Home() {
       </section>
 
       <section className="why">
-        <span className="section-tag">למה לבחור ב־Cervio?</span>
+        <span className="section-tag">למה לבחור Cervica?</span>
 
         <h2>התמיכה שהצוואר שלכם צריך</h2>
 
         <p className="section-description">
-          כרית Cervio משלבת עיצוב ארגונומי, נוחות ותמיכה נכונה כדי לעזור לכם
+          כרית Cervica משלבת עיצוב ארגונומי, נוחות ותמיכה נכונה כדי לעזור לכם
           לישון טוב יותר ולהתעורר בתחושה קלה ונוחה יותר.
         </p>
 
@@ -90,18 +90,18 @@ function Home() {
 
       <section className="about">
         <div className="about-image">
-          <img src={pillow} alt="Cervio Pillow" />
+          <img src={pillow} alt="Cervica Pillow" />
         </div>
 
         <div className="about-content">
           <span className="section-tag">על הכרית</span>
 
-          <h2>למה Cervio שונה?</h2>
+          <h2>למה Cervica שונה?</h2>
 
           <p>
-            כרית Cervio תוכננה במיוחד כדי להעניק תמיכה נכונה לצוואר ולעמוד השדרה
-            במהלך השינה. המבנה הארגונומי מסייע להפחית לחץ, לשפר את איכות השינה
-            ולהעניק נוחות מרבית.
+            כרית Cervica תוכננה במיוחד כדי להעניק תמיכה נכונה לצוואר ולעמוד
+            השדרה במהלך השינה. המבנה הארגונומי מסייע להפחית לחץ, לשפר את איכות
+            השינה ולהעניק נוחות מרבית.
           </p>
 
           <div className="features">

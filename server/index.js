@@ -23,6 +23,8 @@ const path = require("path");
 const uploadRoutes = require("./routes/uploadRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
+const paypalRoutes = require("./routes/paypalRoutes");
+
 
 app.use("/api/contact", contactRoutes);
 app.use("/api/upload", uploadRoutes);
@@ -35,6 +37,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/paypal", paypalRoutes);
 app.get("/", (req, res) => {
   res.send("Medical Pillow API Running");
 });

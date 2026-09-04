@@ -3,8 +3,20 @@ const db = require("../config/db");
 const createOrder = (order, callback) => {
   const sql = `
     INSERT INTO orders
-    (user_id, total_price, delivery_method, payment_method, delivery_address, city, postal_code, status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    (
+      user_id,
+      total_price,
+      delivery_method,
+      payment_method,
+      payment_status,
+      paypal_order_id,
+      paypal_capture_id,
+      delivery_address,
+      city,
+      postal_code,
+      status
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   db.query(
@@ -14,6 +26,9 @@ const createOrder = (order, callback) => {
       order.total_price,
       order.delivery_method,
       order.payment_method,
+      order.payment_status || "Pending",
+      order.paypal_order_id || null,
+      order.paypal_capture_id || null,
       order.delivery_address,
       order.city,
       order.postal_code,
@@ -137,7 +152,27 @@ const getOrderDetails = (order_id, callback) => {
 
   db.query(sql, [order_id], callback);
 };
+const getByPayPalOrderId = (paypal_order_id, callback) => {
+  const sql = `
+    SELECT *
+    FROM orders
+    WHERE paypal_order_id = ?
+  `;
 
+  db.query(sql, [paypal_order_id], callback);
+};
+
+const markPayPalPaid = (paypal_order_id, paypal_capture_id, callback) => {
+  const sql = `
+    UPDATE orders
+    SET payment_status = 'Paid',
+        paypal_capture_id = ?
+    WHERE paypal_order_id = ?
+      AND payment_status <> 'Paid'
+  `;
+
+  db.query(sql, [paypal_capture_id, paypal_order_id], callback);
+};
 module.exports = {
   createOrder,
   addOrderItem,
@@ -147,4 +182,6 @@ module.exports = {
   updateStatus,
   getTrackingByOrderId,
   getOrderDetails,
+  getByPayPalOrderId,
+  markPayPalPaid,
 };

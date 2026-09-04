@@ -30,7 +30,7 @@ const galleryImages = [
   },
   {
     src: "/images/gallery/pillow-6.png",
-    title: "Cervio",
+    title: "Cervica",
     text: "מוצר שנבנה מתוך מחשבה על נוחות, תמיכה ואיכות.",
   },
 ];
@@ -42,7 +42,7 @@ function Gallery() {
     <main className="gallery-page">
       <section className="gallery-hero">
         <span>גלריית תמונות</span>
-        <h1>הכירו את Cervio מקרוב</h1>
+        <h1>הכירו את Cervica מקרוב</h1>
         <p>
           כאן תוכלו לראות את הכרית מזוויות שונות, להבין את המבנה שלה ולהתרשם
           מהעיצוב הנקי והארגונומי שלה.

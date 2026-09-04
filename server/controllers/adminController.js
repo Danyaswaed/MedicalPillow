@@ -357,7 +357,7 @@ const replyToMessage = (req, res) => {
       try {
         await sendReply(
           result[0].email,
-          subject || "Reply from Cervio",
+          subject || "Reply from Cervica",
           message,
         );
 

@@ -23,7 +23,7 @@ function Cart() {
       {cartItems.length === 0 ? (
         <div className="empty-cart">
           <h2>הסל שלך ריק</h2>
-          <p>בחרו את כרית Cervio והוסיפו אותה לסל.</p>
+          <p>בחרו את כרית Cervica והוסיפו אותה לסל.</p>
           <Link to="/product">חזרה למוצר</Link>
         </div>
       ) : (

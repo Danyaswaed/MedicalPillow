@@ -14,14 +14,14 @@ function Doctor() {
     <main className="doctor-page">
       <section className="doctor-hero">
         <div className="doctor-hero-content">
-          <span className="doctor-badge">הפיזיותרפיסט שמאחורי Cervio</span>
+          <span className="doctor-badge">הפיזיותרפיסט שמאחורי Cervica</span>
 
           <h1>כרית שתוכננה מתוך הבנה אמיתית של גוף האדם, יציבה ושינה נכונה.</h1>
 
           <p>
-            Cervio נבנתה בהשראת ידע מקצועי בפיזיותרפיה, מתוך מטרה לתת תמיכה טובה
-            יותר לצוואר, לשפר את תנוחת השינה ולעזור לגוף להרגיש מאוזן ונינוח
-            יותר לאורך הלילה.
+            Cervica נבנתה בהשראת ידע מקצועי בפיזיותרפיה, מתוך מטרה לתת תמיכה
+            טובה יותר לצוואר, לשפר את תנוחת השינה ולעזור לגוף להרגיש מאוזן
+            ונינוח יותר לאורך הלילה.
           </p>
 
           <div className="doctor-actions">
@@ -71,7 +71,7 @@ function Doctor() {
             </p>
 
             <p>
-              Cervio לא נועדה להיות רק כרית רגילה, אלא מוצר שמחבר בין נוחות,
+              Cervica לא נועדה להיות רק כרית רגילה, אלא מוצר שמחבר בין נוחות,
               יציבה נכונה וחשיבה טיפולית מקצועית.
             </p>
           </div>
@@ -107,7 +107,7 @@ function Doctor() {
       <section className="doctor-expertise">
         <div className="doctor-section-title center">
           <span>תחומי מומחיות</span>
-          <h2>ידע מקצועי שמחזק את הפיתוח של Cervio</h2>
+          <h2>ידע מקצועי שמחזק את הפיתוח של Cervica</h2>
         </div>
 
         <div className="expertise-grid">
@@ -141,14 +141,14 @@ function Doctor() {
         </div>
       </section>
 
-      <section className="doctor-cervio-section">
+      <section className="doctor-Cervica-section">
         <div>
-          <span>למה Cervio?</span>
+          <span>למה Cervica?</span>
           <h2>כי שינה טובה מתחילה בתמיכה נכונה</h2>
 
           <p>
             בזמן השינה הגוף צריך תמיכה שמאפשרת לצוואר ולכתפיים להישאר במנח טבעי
-            ונוח. Cervio פותחה מתוך מחשבה על נוחות יומיומית, איכות שינה ותמיכה
+            ונוח. Cervica פותחה מתוך מחשבה על נוחות יומיומית, איכות שינה ותמיכה
             שמרגישה יציבה בלי להיות קשה מדי.
           </p>
 

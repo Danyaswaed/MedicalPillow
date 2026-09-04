@@ -133,7 +133,7 @@ function Admin() {
   return (
     <main className="admin-shell">
       <aside className="admin-sidebar">
-        <h2>Cervio</h2>
+        <h2>Cervica</h2>
 
         <nav>
           <button
@@ -201,8 +201,9 @@ function Admin() {
         <header className="dashboard-header">
           <div>
             <h1>לוח ניהול</h1>
-            <p>ניהול הזמנות, לקוחות, מוצרים ודוחות של Cervio</p>
+            <p>ניהול הזמנות, לקוחות, מוצרים ודוחות של Cervica</p>
           </div>
+          Cervica
         </header>
 
         {activeTab === "dashboard" && (

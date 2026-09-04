@@ -298,7 +298,7 @@ INSERT INTO products
 VALUES
 (
 'Medical Pillow',
-'Ergonomic medical pillow designed by a physiotherapist.',
+'Ergonomic medical pillow designed by a physiotherapist',
 299.99,
 100,
 1.20,

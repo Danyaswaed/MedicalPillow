@@ -56,7 +56,7 @@ function Receipt() {
       <section className="receipt-card">
         <header className="receipt-header">
           <div>
-            <h1>Cervio</h1>
+            <h1>Cervica</h1>
             <p>קבלה עבור הזמנה #{order.order_id}</p>
           </div>
 
@@ -149,7 +149,7 @@ function Receipt() {
         </footer>
 
         <p className="receipt-note">
-          תודה שבחרתם Cervio. הקבלה נוצרה באופן אוטומטי ממערכת ההזמנות.
+          תודה שבחרתם Cervica. הקבלה נוצרה באופן אוטומטי ממערכת ההזמנות.
         </p>
       </section>
     </main>

@@ -76,7 +76,7 @@
 }
 
 .doctor-actions a,
-.doctor-cervio-section a {
+.doctor-Cervica-section a {
   text-decoration: none;
   border-radius: 999px;
   padding: 15px 30px;
@@ -94,7 +94,7 @@
 }
 
 .doctor-actions a:hover,
-.doctor-cervio-section a:hover {
+.doctor-Cervica-section a:hover {
   transform: translateY(-4px);
 }
 
@@ -331,7 +331,7 @@
 
 /* CTA */
 
-.doctor-cervio-section {
+.doctor-Cervica-section {
   background:
     radial-gradient(
       circle at 0% 0%,
@@ -346,7 +346,7 @@
   box-shadow: 0 34px 90px rgba(7, 26, 61, 0.18);
 }
 
-.doctor-cervio-section span {
+.doctor-Cervica-section span {
   display: inline-flex;
   width: fit-content;
   background: rgba(234, 246, 255, 0.12);
@@ -358,7 +358,7 @@
   margin-bottom: 20px;
 }
 
-.doctor-cervio-section h2 {
+.doctor-Cervica-section h2 {
   font-size: clamp(36px, 4vw, 52px);
   line-height: 1.12;
   max-width: 780px;
@@ -366,7 +366,7 @@
   letter-spacing: -1px;
 }
 
-.doctor-cervio-section p {
+.doctor-Cervica-section p {
   margin-top: 20px;
   color: #c9ddef;
   font-size: 19px;
@@ -374,7 +374,7 @@
   max-width: 830px;
 }
 
-.doctor-cervio-section a {
+.doctor-Cervica-section a {
   margin-top: 30px;
   background: linear-gradient(135deg, #eaf6ff, #b8d8f2);
   color: #06162e;
@@ -419,7 +419,7 @@
   }
 
   .doctor-hero h1,
-  .doctor-cervio-section h2 {
+  .doctor-Cervica-section h2 {
     font-size: 36px;
   }
 
@@ -431,7 +431,7 @@
   .doctor-about-text,
   .doctor-values-card,
   .expertise-card,
-  .doctor-cervio-section {
+  .doctor-Cervica -section {
     border-radius: 28px;
     padding: 26px;
   }

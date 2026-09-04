@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 
 const verifyToken = require("../Middleware/verifyToken");
@@ -12,8 +13,14 @@ const {
   getOrderDetails,
 } = require("../controllers/orderController");
 
+const {
+  createPaypalOrder,
+  capturePaypalOrder,
+} = require("../controllers/paypalController");
 router.post("/", verifyToken, createOrder);
 
+router.post("/paypal/create", verifyToken, createPaypalOrder);
+router.post("/paypal/:paypalOrderId/capture", verifyToken, capturePaypalOrder);
 router.get("/", verifyToken, isAdmin, getOrders);
 
 router.get("/:id/details", verifyToken, getOrderDetails);
